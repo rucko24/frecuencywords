@@ -41,9 +41,9 @@ public class FrecuencyTest {
 
     @Test
     void testFrecuencyWordsParallel() {
-        System.out.println("Run Frecuency holaParallel");
-        System.out.printf(FORMAT_PRINTF_15, WORD, FRECUENCY);
-        final Map<String, Long> mapWordsParallel = frecuencyWordsService.frecuencyWordsParallel(WORDS);
+        log.info("Run Frecuency Parallel");
+        log.info(String.format(FORMAT_PRINTF_15,WORD,FRECUENCY));
+        final Map<String,Long> mapWordsParallel = frecuencyWordsService.frecuencyWordsParallel(WORDS);
         Assertions.assertNotNull(mapWordsParallel);
 
         mapWordsParallel.forEach((word, frecuency) -> {
@@ -55,13 +55,14 @@ public class FrecuencyTest {
         final long expected = 1;
         MatcherAssert.assertThat(expected, Matchers.is(result));
         /*
-         * total memory consumptionhola
+         * total memory consumption
          */
         log.info(memory.getTotalMemory());
     }
 
     @Test
     void testFrecuencyWordsFromTextFile() {
+        log.info("Run Frecuency Parallel");
         try (final InputStream inputStream = Files.newInputStream(PATH_TEXT_FILE);
              final Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
              final BufferedReader br = new BufferedReader(reader)) {
@@ -71,6 +72,7 @@ public class FrecuencyTest {
             sb.append(br.lines().collect(Collectors.joining()));
 
             final Map<String, Long> mapWordsParallel = frecuencyWordsService.frecuencyWords(sb.toString());
+            log.info(String.format(FORMAT_PRINTF_15,WORD,FRECUENCY));
             mapWordsParallel.forEach((word, frecuency) -> {
                 log.info(String.format(FORMAT_PRINTF_15, word, frecuency));
             });
@@ -91,8 +93,9 @@ public class FrecuencyTest {
 
     @Test
     void frecuencyFromPath() {
-
-        final Map<String, Long> mapWordsParallel = frecuencyWordsService.frecuencyWordsFromFile(PATH_TEXT_FILE);
+        log.info("Run Frecuency Parallel");
+        final Map<String,Long> mapWordsParallel = frecuencyWordsService.frecuencyWordsFromFile(PATH_TEXT_FILE);
+        log.info(String.format(FORMAT_PRINTF_15, WORD,FRECUENCY));
         mapWordsParallel.forEach((word, frecuency) -> {
             log.info(String.format(FORMAT_PRINTF_15, word, frecuency));
         });
