@@ -7,8 +7,10 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -21,8 +23,9 @@ import java.util.stream.Collectors;
  * Simple test for frecuency words
  */
 @Log4j2
-@SpringBootTest
-public class FrecuencyTest {
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {FrecuencyWordsService.class,Memory.class})
+class FrecuencyTest {
 
     private static final String FORMAT_PRINTF_15 = "%-15s%s%n";
     private static final String WORD = "Word";
