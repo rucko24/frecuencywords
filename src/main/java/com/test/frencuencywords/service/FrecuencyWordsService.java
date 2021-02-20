@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -57,14 +58,14 @@ public class FrecuencyWordsService {
      * @return Map<String,Long> with key(word), and value(frecuency)
      */
     public Map<String,Long> frecuencyWordsFromFile(final Path input) {
-        try {
-            final String splitWords = Files.lines(input)
-                    .collect(Collectors.joining());
+        try (final Stream<String> lines = Files.lines(input)) {
 
-            return Arrays.stream(splitWords.split(SPLIT_ESPACE_CARACTER))
+            return Arrays.stream(lines.collect(Collectors.joining())
+                    .split(SPLIT_ESPACE_CARACTER))
                     .filter(this::filterEmptyAndNull)
                     .map(this::normalize)
                     .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
