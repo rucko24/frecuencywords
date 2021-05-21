@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- *
+ * @author rubn
  */
 @Service
 public class FrecuencyWordsService {

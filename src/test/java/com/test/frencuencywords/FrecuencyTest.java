@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 /**
+ * @author rubn
+ *
  * Simple test for frecuency words
  */
 @Log4j2
