@@ -1,5 +1,6 @@
 package com.test.frencuencywords.service;
 
+import lombok.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class FrecuencyWordsService {
      * @param words to count
      * @return Map<String,Long> with key(word), and value(frecuency)
      */
-    public Map<String,Long> frecuencyWordsParallel(final String words) {
+    public Map<String,Long> frecuencyWordsParallel(@NonNull final String words) {
         final String[] splitWords = words.split(SPLIT_ESPACE_CARACTER);
         return Arrays.stream(splitWords)
                 .parallel()
@@ -44,7 +45,7 @@ public class FrecuencyWordsService {
      * @param words to count
      * @return Map<String,Long> with key(word), and value(frecuency)
      */
-    public Map<String,Long> frecuencyWords(final String words) {
+    public Map<String,Long> frecuencyWords(@NonNull final String words) {
         final String[] splitWords = words.split(SPLIT_ESPACE_CARACTER);
         return Arrays.stream(splitWords)
                 .filter(this::filterEmptyAndNull)
